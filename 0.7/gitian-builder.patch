@@ -1,0 +1,39 @@
+From 24146a512d240907d2a646ed6c83301b4e2fc336 Mon Sep 17 00:00:00 2001
+From: Andrew Chow <achow101-github@achow101.com>
+Date: Mon, 7 Mar 2022 10:49:33 -0500
+Subject: [PATCH] make-base-vm for lucid in 2022
+
+---
+ bin/make-base-vm | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/bin/make-base-vm b/bin/make-base-vm
+index 86aed16..67acb28 100755
+--- a/bin/make-base-vm
++++ b/bin/make-base-vm
+@@ -147,7 +147,7 @@ if [ $DISTRO = "debian" ]; then
+   LOCALE_PKG=locales
+ fi
+ 
+-addpkg=pciutils,build-essential,git,subversion,$LOCALE_PKG,wget,lsb-release,sudo
++addpkg=pciutils,build-essential,git-core,subversion,$LOCALE_PKG,wget,lsb-release,sudo
+ 
+ if [ $DISTRO = "ubuntu" ]; then
+   # Need comma at end to work around an issue with apt for Debian <= Wheezy regarding empty strings
+@@ -199,11 +199,13 @@ FROM $base_image
+ 
+ ENV DEBIAN_FRONTEND=noninteractive
+ RUN echo 'Acquire::http { Proxy "$MIRROR_BASE"; };' > /etc/apt/apt.conf.d/50cacher
++RUN sed -i "s/archive.ubuntu.com/old-releases.ubuntu.com/" /etc/apt/sources.list
+ RUN apt-get update && apt-get --no-install-recommends -y install $addpkg
+ 
+ RUN useradd -ms /bin/bash -U $DISTRO
+ USER $DISTRO:$DISTRO
+ WORKDIR /home/$DISTRO
++env HOME /home/ubuntu
+ 
+ CMD ["sleep", "infinity"]
+ EOF
+-- 
+2.35.1
+
