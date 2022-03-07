@@ -27,7 +27,7 @@ bin/make-base-vm -s lucid -a amd64 --docker
 6. Do the build (replace 0.7.0 with the correct tag)
 
 ```
-env USE_DOCKER=1 bin/gbuild --commit bitcoin=v0.7.0 ../bitcoin/archaeology/contrib/gitian-descriptors/gitian.yml
+env USE_DOCKER=1 bin/gbuild --commit bitcoin=v0.7.0 ../bitcoin/contrib/gitian-descriptors/gitian.yml
 ```
 
 7. Retrieve the binaries from `build/out/bin/`.
