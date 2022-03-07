@@ -13,6 +13,7 @@ git am ../../build-old-bitcoin/0.3/gitian-builder.patch
 ```
 mkdir -p inputs; cd inputs/
 wget 'https://github.com/wxWidgets/wxWidgets/releases/download/v2.9.1/wxWidgets-2.9.1.tar.bz2'
+wget 'http://miniupnp.free.fr/files/download.php?file=miniupnpc-1.5.tar.gz' -O miniupnpc-1.5.tar.gz
 cd ..
 ```
 
@@ -23,10 +24,10 @@ bin/make-base-vm -s lucid -a i386 --docker
 bin/make-base-vm -s lucid -a amd64 --docker
 ```
 
-8. Do the build
+8. Do the build. This build will use a custom gitian descriptor from this repo.
 
 ```
-env USE_DOCKER=1 bin/gbuild --commit bitcoin=v0.3.21 ../bitcoin/contrib/gitian.yml
+env USE_DOCKER=1 bin/gbuild --commit bitcoin=v0.3.21 ../build-old-bitcoin/0.3/0.3.21/gitian-linux.yml
 ```
 
 9. Retrieve the binaries from `build/out/bin/`.
