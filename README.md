@@ -1,8 +1,10 @@
 # Building Old Bitcoin Core Releases
 
-Some docs for building old Bitcoin Core releases and using them on your modern computer.
+Some docs for building old Bitcoin Core releases and using them on your modern Linux computer.
 
 Current as of March 2022
+
+Note Linux build instructions only.
 
 ## Method
 
