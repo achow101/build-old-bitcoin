@@ -2,7 +2,7 @@
 
 1. Clone Bitcoin and checkout a 0.4.x tag
 2. In the parent directory, clone gitian-builder and `cd` into it. Make sure gitian dependencies for Docker are installed and working.
-3. Apply the patch:
+3. Apply the patch (Note this is the same patch as 0.7):
 
 ```
 git am ../../build-old-bitcoin/0.4/gitian-builder.patch
